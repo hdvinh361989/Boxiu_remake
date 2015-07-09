@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="urigo_ionic.js" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/urigo_ionic.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/urigo_ionic.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

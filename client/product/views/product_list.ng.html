@@ -1,0 +1,44 @@
+<ion-view view-title="Product">
+    <!--Add remove button to navBar-->
+    <ion-nav-buttons side="primary">
+        <button class="button button-icon button-clear ion-ios-minus-outline"
+                ng-click="data.showDelete = !data.showDelete">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon button-clear ion-ios-plus-outline"
+                ui-sref="admin.product.edit">
+        </button>
+    </ion-nav-buttons>
+
+    <!--content-->
+    <ion-content>
+        <ion-list show-delete="data.showDelete">
+            <ion-item ng-repeat="item in products"
+                      href="#/{{item.id}}"
+                      item="item"
+                      class="item-remove-animate item item-thumbnail-left">
+                <img ng-src="images/{{item.image}}">
+
+                <h2>{{item.profile.brand}}</h2>
+
+                <h3>{{item.profile.name}}</h3>
+
+                <div class="price-wrap">
+                    <span class="price price-old">{{item.profile.price | currency: 2}}</span> - <span
+                        class="price price-sale">{{item.profile.discountPrice | currency: 2}}</span>
+                </div>
+
+                <ion-delete-button class="ion-minus-circled"
+                                   ng-click="delete(item, $event)">
+                </ion-delete-button>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll on-infinite="loadMore()"
+                             icon="ion-loading-c"
+                             ng-if="isMoreDataCanBeLoad()">
+
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,266 @@
+<ion-view view-title="Create New Product">
+    <form name="createForm">
+        <ion-content>
+            <div layout="row">
+                <!--Left column-->
+                <div flex-gt-md="66">
+                    <div class="padding">
+                        <!--Brand, Name, Type-->
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>Brand</label>
+                                <input type="text"
+                                       name="brand"
+                                       ng-model="newProduct.profile.brand"
+                                       required>
+
+                                <div ng-messages="createForm.brand.$error"
+                                     ng-show="createForm.brand.$dirty"
+                                     class="assertive padding-right">
+                                    <div ng-message="required">required</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container flex>
+                                <label>Name</label>
+                                <input type="text"
+                                       name="name"
+                                       ng-model="newProduct.profile.name"
+                                       required>
+
+                                <div ng-messages="createForm.name.$error"
+                                     ng-show="createForm.name.$dirty"
+                                     class="assertive padding-right">
+                                    <div ng-message="required">required</div>
+                                </div>
+                            </md-input-container>
+
+                            <!--bi loi, nen se doi thanh kieu check box-->
+                            <md-select ng-model="newProduct.profile.type"
+                                       placeholder="Type of Product">
+                                <md-option ng-repeat="type in data.types"
+                                           value="{{type.value}}">{{type.label}}</md-option>
+                            </md-select>
+                        </div>
+
+                        <!--ParentBoxes/ ChildProducts-->
+                        <md-chips ng-if="newProduct.profile.type ? newProduct.profile.type === 'item' : true"
+                                  ng-model="selectedParentBoxes"
+                                  md-autocomplete-snap
+                                  md-require-match
+                                  vt-remove-chips-undefined
+                                  md-on-append="addParentBox($chip, selectedParentBoxes)">
+                            <md-autocomplete md-selected-item="selectedParentBox"
+                                             md-selected-item-change=""
+                                             md-search-text="searchTxtParentBoxes"
+                                             md-search-text-change="searchProduct(searchTxtParentBoxes)"
+                                             md-items="item in products"
+                                             md-item-text="item.profile.name"
+                                             placeholder="Search for parent product"
+                                             md-autofocus="false">
+                                <md-item-template>
+                                    <div>
+                                        <span md-highlight-text="searchTxtParentBoxes"
+                                              class="title">{{item.profile.brand}}: </span>
+                                        <span md-highlight-text="searchTxtParentBoxes">{{item.profile.name}}</span>
+                                    </div>
+                                </md-item-template>
+
+                                <md-not-found>
+                                    No match found for {{searchTxtParentBoxes}}
+                                </md-not-found>
+                            </md-autocomplete>
+
+                            <md-chip-template>
+                                {{$chip.profile.name}}
+                            </md-chip-template>
+
+                            <vt-remove-chip-button md-chip-remove
+                                                   vt-on-click="removeParentBox($chip)">
+                            </vt-remove-chip-button>
+                        </md-chips>
+                        <md-chips ng-if="newProduct.profile.type ? newProduct.profile.type === 'box' : true"
+                                  ng-model="selectedChildProducts"
+                                  md-autocomplete-snap
+                                  md-require-match
+                                  vt-remove-chips-undefined
+                                  md-on-append="addChildProduct($chip, selectedChildProducts)">
+                            <md-autocomplete md-selected-item="selectedChildProduct"
+                                             md-selected-item-change=""
+                                             md-search-text="searchTxtChildProducts"
+                                             md-search-text-change="searchProduct(searchTxtChildProducts)"
+                                             md-items="item in products"
+                                             md-item-text="item.profile.name"
+                                             placeholder="Search for child product"
+                                             md-autofocus="false">
+                                <md-item-template>
+                                    <div>
+                                        <span md-highlight-text="searchTxtChildProducts"
+                                              class="title">{{item.profile.brand}}: </span>
+                                        <span md-highlight-text="searchTxtChildProducts">{{item.profile.name}}</span>
+                                    </div>
+                                </md-item-template>
+
+                                <md-not-found>
+                                    No match found for {{searchTxtChildProducts}}
+                                </md-not-found>
+                            </md-autocomplete>
+
+                            <md-chip-template>
+                                {{$chip.profile.name}}
+                            </md-chip-template>
+
+                            <vt-remove-chip-button md-chip-remove
+                                                   vt-on-click="removeChildProduct($chip)">
+                            </vt-remove-chip-button>
+                        </md-chips>
+
+                        <!--Image uploader-->
+                        <div >
+
+                        </div>
+
+                        <!--Introduction-->
+                        <md-input-container class="">
+                            <label>Introduction</label>
+                                <textarea name="introduction"
+                                          ng-model="newProduct.profile.introduction"
+                                          required></textarea>
+
+                            <div ng-messages="createForm.introduction.$error"
+                                 ng-show="createForm.introduction.$dirty"
+                                 class="assertive padding-right">
+                                <div ng-message="required">required</div>
+                            </div>
+                        </md-input-container>
+
+                        <!--Direction-->
+                        <md-input-container class="">
+                            <label>Direction</label>
+                                <textarea name="direction"
+                                          ng-model="newProduct.profile.direction"></textarea>
+                        </md-input-container>
+
+                        <!--Price, Discount Rate, Quantity, Size-->
+                        <div layout="row">
+                            <md-input-container>
+                                <label>Price</label>
+                                <input type="number"
+                                       name="price"
+                                       ng-model="newProduct.profile.price"
+                                       required
+                                       ng-pattern="/\d/">
+
+                                <div ng-messages="createForm.price.$error"
+                                     ng-show="createForm.price.$dirty"
+                                     class="assertive padding-right">
+                                    <div ng-message="required">required</div>
+                                    <div ng-message="number">must be number</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container>
+                                <label>Discount Rate</label>
+                                <input type="number"
+                                       name="discountRate"
+                                       ng-model="newProduct.profile.discountRate"
+                                       ng-pattern="/\d/">
+
+                                <div ng-messages="createForm.discountRate.$error"
+                                     ng-show="createForm.discountRate.$dirty"
+                                     class="assertive padding-right">
+                                    <div ng-message="pattern">must be number</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="">
+                                <label>Quantity</label>
+                                <input type="number"
+                                       name="quantity"
+                                       ng-model="newProduct.profile.quantity"
+                                       ng-pattern="/\d/">
+
+                                <div ng-messages="createForm.quantity.$error"
+                                     ng-show="createForm.quantity.$dirty"
+                                     class="assertive padding-right">
+                                    <div ng-message="pattern">must be number</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="">
+                                <label>Size</label>
+                                <input name="size"
+                                       ng-model="newProduct.profile.size">
+                            </md-input-container>
+                        </div>
+
+                        <!--Category, Tag-->
+                        <md-chips ng-model="selectedCates"
+                                  md-autocomplete-snap
+                                  md-require-match
+                                  md-on-append="addCategory($chip, selectedCates)"
+                                  vt-remove-chips-undefined>
+                            <md-autocomplete md-input-name="autoCompleteCate"
+                                             md-selected-item="selectedCate"
+                                             md-selected-item-change=""
+                                             md-search-text="searchTxtCate"
+                                             md-search-text-change="searchCate(searchTxtCate)"
+                                             md-items="item in categories"
+                                             md-item-text="item.name"
+                                             placeholder="Search for category"
+                                             md-autofocus="false">
+                                <!--item template-->
+                                <md-item-template>
+                                    <span md-highlight-text="searchTxtCate">{{item.name}}</span>
+                                </md-item-template>
+                            </md-autocomplete>
+
+                            <md-chip-template>
+                                <span>{{$chip.name}}</span>
+                            </md-chip-template>
+
+                            <!--$mdChipsCtrl is controller of md-chips directive-->
+                            <vt-remove-chip-button md-chip-remove
+                                                   on-click="removeCateChip($chip)">
+                            </vt-remove-chip-button>
+                        </md-chips>
+
+                        <md-chips ng-model="selectedTags"
+                                  md-autocomplete-snap
+                                  md-require-match
+                                  vt-remove-chips-undefined
+                                  md-on-append="addTag($chip, selectedTags)">
+                            <md-autocomplete md-input-name="autoCompleteTag"
+                                             md-selected-item="selectedTag"
+                                             md-selected-item-change=""
+                                             md-search-text="searchTxtTag"
+                                             md-search-text-change="searchTags(searchTxtTag)"
+                                             md-items="item in tags"
+                                             md-item-text="item.name"
+                                             placeholder="Search for tag"
+                                             md-autofocus="false">
+                                <!--item template-->
+                                <md-item-template>
+                                    <span md-highlight-text="searchTxtTag">{{item.name}}</span>
+                                </md-item-template>
+                            </md-autocomplete>
+
+                            <md-chip-template>
+                                <span>{{$chip.name}}</span>
+                            </md-chip-template>
+
+                            <vt-remove-chip-button md-chip-remove vt-on-click="removeTagChip($chip)">
+                            </vt-remove-chip-button>
+                        </md-chips>
+
+                    </div>
+                </div>
+
+                <!--Right column-->
+                <div flex-gt-md="33" show-gt-md>
+
+                </div>
+            </div>
+        </ion-content>
+    </form>
+</ion-view>

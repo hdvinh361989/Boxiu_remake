@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="angular_ionic_uiRouter_material" type="javaScript">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/angular_angular-material.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/urigo_angular-ui-router.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/urigo_angular.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/angular_angular-aria.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/urigo_ionic.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

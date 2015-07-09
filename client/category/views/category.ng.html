@@ -1,0 +1,132 @@
+<div id="category-wrap"
+        >
+
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout="row">
+            <md-autocomplete md-input-name="autocompleteField"
+                             md-selected-item="selectedItem"
+                             md-selected-item-change=""
+                             md-search-text="searchTxt"
+                             md-items="item in search(searchTxt)"
+                             md-item-text="item.name"
+                             md-min-length="3"
+                             md-floating-label="Category"
+                             flex>
+
+                <md-item-template>
+                    <span md-highlight-text="searchTxt">{{item.name}}</span>
+                </md-item-template>
+
+                <md-not-found>
+                    No matches found for "{{searchTxt}}"
+                </md-not-found>
+            </md-autocomplete>
+        </div>
+    </md-toolbar>
+
+    <md-content layout="row"
+                layout-padding layout-fill>
+
+        <section id="input"
+                 flex="30">
+            <form name="inputForm">
+                <md-input-container>
+                    <label>Name</label>
+                    <input required ng-pattern="/\w/"
+                           ng-model="newCategory.name"
+                           name="Name">
+
+                    <div ng-messages="inputForm.Name.$error" ng-show="inputForm.Name.$dirty">
+                        <div ng-message="required">Name is reuiqred</div>
+                        <div ng-message='pattern'>"Name must be character: A-Za-z 0-9 "</div>
+                    </div>
+                </md-input-container>
+
+                <md-autocomplete md-input-name="autocompleteField_parent"
+                                 md-selected-item="selectedParent"
+                                 md-search-text="searchTxtParent"
+                                 md-items="item in search(searchTxtParent)"
+                                 md-item-text="item.name"
+                                 md-floating-label="Enter category name">
+
+                    <md-item-template>
+                        <span md-highlight-text="searchTxtParent">{{item.name}}</span>
+                    </md-item-template>
+
+                    <md-not-found>
+                        No matches found for "{{searchTxtParent}}"
+                    </md-not-found>
+                </md-autocomplete>
+
+                <md-input-container>
+                    <label>Description</label>
+                    <input ng-model="newCategory.description"
+                           name="Description">
+                </md-input-container>
+
+                <div>
+                    <md-button ng-click="save(newCategory, selectedParent)" aria-label="Save">Save</md-button>
+                    <md-button ng-click="reset()" aria-label="Reset">Reset</md-button>
+                </div>
+            </form>
+        </section>
+
+        <span flex="5"></span>
+
+        <section id="table"
+                 flex="65" class="">
+            <div>
+                <div class="md-toolbar-tools"
+                     layout="row" layout-fill layout-padding layout-align="end center">
+                    <md-button class="md-warn" ng-click="delete(selectedCategories)" aria-label="Delete">
+                        Delete
+                    </md-button>
+                    <!--<div class="btn-group" dropdown>-->
+                    <!--<md-button class="md-icon-button dropdown-toggle" dropdown-toggle="">-->
+                    <!--<md-icon md-svg-icon="action:ic_settings_24px"></md-icon>-->
+                    <!--</md-button>-->
+                    <!--<ul class="dropdown-menu" role="menu">-->
+                    <!--<li layout="row" layout-fill>-->
+                    <!--<md-button class="md-primary" ng-click="delete(selectedCategories)" flex>-->
+                    <!--Delete-->
+                    <!--</md-button>-->
+                    <!--</li>-->
+                    <!--</ul>-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <md-content style="height: 75vh">
+                <md-list>
+                    <!-- &lt;!&ndash;header&ndash;&gt;
+                    <md-list-item id="table-header"
+                                  layout="row" layout-fill>
+                        <span flex="{{table.action.width}}">{{table.action.name}}</span>
+                        <span ng-repeat="column in table.columns"
+                             flex="{{column.width}}">
+                            {{column.name}}
+                        </span>
+                    </md-list-item>-->
+                    <!--body-->
+                    <md-list-item ng-repeat="cate in tags">
+                        <div layout="row" layout-fill layout-padding>
+                            <md-checkbox class=""
+                                         aria-label="checkbox"
+                                         ng-click="toggle(cate, selectedCategories)"></md-checkbox>
+                            <div id="index" flex="10">
+                                #{{$index}}
+                            </div>
+                            <div id="data"
+                                 ng-repeat="column in table.columns"
+                                 flex="{{column.width}}"
+                                 class="{{column.style}}">
+                            <span ng-show="column.displayName" class="">{{column.name}}
+                                : </span> <strong>{{cate[column.name]}}</strong>
+                            </div>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </section>
+    </md-content>
+
+</div>

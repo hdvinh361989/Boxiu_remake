@@ -1,0 +1,93 @@
+<div id="tag-wrap">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout="row">
+            <md-autocomplete md-input-name="autocompleteField"
+                             md-selected-item="selectedItem"
+                             md-selected-item-change=""
+                             md-search-text="searchTxt"
+                             md-items="item in search(searchTxt)"
+                             md-item-text="item.name"
+                             md-min-length="3"
+                             md-floating-label="Tag"
+                             flex>
+
+                <md-item-template>
+                    <span md-highlight-text="searchTxt">{{item.name}}</span>
+                </md-item-template>
+
+                <md-not-found>
+                    No matches found for "{{searchTxt}}"
+                </md-not-found>
+            </md-autocomplete>
+        </div>
+    </md-toolbar>
+
+    <md-content layout="row"
+                layout-padding layout-fill>
+
+        <section id="input"
+                 flex="30">
+            <form name="inputForm">
+                <md-input-container>
+                    <label>Name</label>
+                    <input required
+                           ng-model="newTag.name"
+                           name="Name">
+
+                    <div ng-messages="inputForm.Name.$error" ng-show="inputForm.Name.$dirty">
+                        <div ng-message="required">Name is reuiqred</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Description</label>
+                    <input ng-model="newTag.description"
+                           name="Description">
+                </md-input-container>
+
+                <div>
+                    <md-button ng-click="save(newTag)" aria-label="Save">Save</md-button>
+                    <md-button ng-click="reset()" aria-label="Reset">Reset</md-button>
+                </div>
+            </form>
+        </section>
+
+        <span flex="5"></span>
+
+        <section id="table"
+                 flex="65" class="">
+            <div>
+                <div class="md-toolbar-tools"
+                     layout="row" layout-fill layout-padding layout-align="end center">
+                    <md-button class="md-warn" ng-click="delete(selectedTags)" aria-label="Delete">
+                        Delete
+                    </md-button>
+
+                </div>
+            </div>
+            <md-content style="height: 75vh">
+                <md-list>
+                    <md-list-item ng-repeat="tag in tags">
+                        <div layout="row" layout-fill layout-padding>
+                            <md-checkbox class=""
+                                         aria-label="checkbox"
+                                         ng-click="toggle(tag, selectedTags)"></md-checkbox>
+                            <div id="index" flex="10">
+                                #{{$index}}
+                            </div>
+                            <div id="data"
+                                 ng-repeat="column in table.columns"
+                                 flex="{{column.width}}"
+                                 class="{{column.style}}">
+                            <span ng-show="column.displayName" class="">{{column.name}}
+                                : </span> <strong>{{tag[column.name]}}</strong>
+                            </div>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </section>
+    </md-content>
+
+</div>

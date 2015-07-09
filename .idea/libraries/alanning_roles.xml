@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="alanning_roles" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/alanning_roles.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/alanning_roles.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

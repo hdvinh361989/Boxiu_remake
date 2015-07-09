@@ -1,0 +1,28 @@
+<div id="login-wrap">
+    <ion-pane>
+        <ion-content>
+            <div class="row row-center">
+                <div class="col-33 col-offset-33 padding-top padding-bottom">
+                    <h1 class="text-center ">Boxiu</h1>
+
+                    <div class="list ">
+                        <label class="item item-input">
+                            <input ng-model="user.username"
+                                   type="text"
+                                   placeholder="Username">
+                        </label>
+                        <label class="item item-input">
+                            <input ng-model="user.password"
+                                   type="password"
+                                   placeholder="Password">
+                        </label>
+                        <button class="button button-block button-positive"
+                                ng-click="login()">
+                            Login
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+    </ion-pane>
+</div>
