@@ -1,10 +1,10 @@
 <ion-view view-title="Create New Product">
     <form name="createForm">
         <ion-content>
-            <div layout="row">
+            <div class="row responsive-lg">
                 <!--Left column-->
-                <div flex-gt-md="66">
-                    <div class="padding">
+                <div class="col-66 padding">
+                    <div class="">
                         <!--Brand, Name, Type-->
                         <div layout="row">
                             <md-input-container flex>
@@ -71,7 +71,8 @@
                                 </md-not-found>
                             </md-autocomplete>
 
-                            <md-chip-template>
+                            <md-chip-template
+                                    ng-click="!$mdChipsCtrl.readonly && $mdChipsCtrl.selectChip($$replacedScope.$index)">
                                 {{$chip.profile.name}}
                             </md-chip-template>
 
@@ -106,7 +107,8 @@
                                 </md-not-found>
                             </md-autocomplete>
 
-                            <md-chip-template>
+                            <md-chip-template
+                                    ng-click="!$mdChipsCtrl.readonly && $mdChipsCtrl.selectChip($$replacedScope.$index)">
                                 {{$chip.profile.name}}
                             </md-chip-template>
 
@@ -114,11 +116,6 @@
                                                    vt-on-click="removeChildProduct($chip)">
                             </vt-remove-chip-button>
                         </md-chips>
-
-                        <!--Image uploader-->
-                        <div >
-
-                        </div>
 
                         <!--Introduction-->
                         <md-input-container class="">
@@ -215,16 +212,16 @@
                                 </md-item-template>
                             </md-autocomplete>
 
-                            <md-chip-template>
+                            <md-chip-template
+                                    ng-click="!$mdChipsCtrl.readonly && $mdChipsCtrl.selectChip($$replacedScope.$index)">
                                 <span>{{$chip.name}}</span>
                             </md-chip-template>
 
                             <!--$mdChipsCtrl is controller of md-chips directive-->
                             <vt-remove-chip-button md-chip-remove
-                                                   on-click="removeCateChip($chip)">
+                                                   vt-on-click="removeCateChip($chip)">
                             </vt-remove-chip-button>
                         </md-chips>
-
                         <md-chips ng-model="selectedTags"
                                   md-autocomplete-snap
                                   md-require-match
@@ -245,7 +242,8 @@
                                 </md-item-template>
                             </md-autocomplete>
 
-                            <md-chip-template>
+                            <md-chip-template
+                                    ng-click="!$mdChipsCtrl.readonly && $mdChipsCtrl.selectChip($$replacedScope.$index)">
                                 <span>{{$chip.name}}</span>
                             </md-chip-template>
 
@@ -257,8 +255,14 @@
                 </div>
 
                 <!--Right column-->
-                <div flex-gt-md="33" show-gt-md>
-
+                <div class="col-33 padding">
+                    <!--Image uploader-->
+                    <div class="img-wrapper">
+                        <img src="{{newProduct.image}}" class="item-image"/>
+                        <vt-image-uploader vt-save-url-to="newProduct.image"
+                                           ng-class="{'vt-visible': !newProduct.image}">
+                        </vt-image-uploader>
+                    </div>
                 </div>
             </div>
         </ion-content>

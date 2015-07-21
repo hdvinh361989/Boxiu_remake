@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="cfs group packages" type="javaScript">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_tempstore.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_worker.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_upload-http.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_file.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_collection.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_reactive-property.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_data-man.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_collection-filters.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_power-queue.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_gridfs.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_base-package.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_standard-packages.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_http-methods.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_http-publish.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_access-point.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_reactive-list.js" />
+      <root url="file://$PROJECT_DIR$/.meteor/local/build/programs/web.browser/packages/cfs_storage-adapter.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

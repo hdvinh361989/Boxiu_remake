@@ -1,4 +1,11 @@
+//Color + background
+.calm-background {
+  border-color: #0a9ec7;
+  background-color: #11c1f3;
+  color: #fff;
+}
 
+//End Color + background
 .toolbar-color {
   color: rgba(255, 255, 255, 0.87);
 }
@@ -135,8 +142,6 @@ md-card {
   }
 }
 
-
-
 //input css
 md-input-container textarea,
 md-input-container input[type="text"],
@@ -152,9 +157,203 @@ md-input-container input[type="email"],
 md-input-container input[type="url"],
 md-input-container input[type="search"],
 md-input-container input[type="tel"],
-md-input-container input[type="color"]  {
+md-input-container input[type="color"] {
   border-bottom: 1px solid;
   border-color: rgba(0, 0, 0, 0.117647);
+}
+
+//image uploader
+.img-wrapper {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
+
+  img {
+    //width: 100%;
+    height: 100%;
+  }
+
+  vt-image-uploader {
+    position: absolute;
+    top: 45%;
+    left: 30%;
+    visibility: hidden;
+  }
+}
+
+.img-wrapper:hover {
+  vt-image-uploader {
+    visibility: visible;
+  }
+}
+
+.drop-box {
+  text-align: center;
+  margin: 10px;
+
+  .vt-upload-placeHolder{
+    padding-top: 100px;
+  }
+}
+
+.drop-box.dragover {
+  outline: 4px dashed #DDD;
+}
+
+.drop-box.dragover-err {
+  outline: 4px dashed red;
+}
+
+.vt-visible {
+  visibility: visible !important;
+}
+
+.vt-card {
+  position: relative;
+}
+.vt-button-delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
+}
+
+//Animation
+//slide-left-to-right
+.slide-left-to-right.ng-hide-add {
+  -webkit-animation: 400ms hide;
+  animation: 400ms hide;
+}
+
+.slide-left-to-right.ng-hide-remove {
+  -webkit-animation: 400ms show;
+  animation: 400ms show;
+}
+
+@keyframes show {
+  from {
+    right: 100%;
+    opacity: 0
+  }
+  to {
+    right: 10px;
+    opacity: 1
+  }
+}
+
+@-webkit-keyframes show {
+  from {
+    right: 100%;
+    opacity: 0
+  }
+  to {
+    right: 10px;
+    opacity: 1
+  }
+}
+
+@keyframes hide {
+  from {
+    right: 10px;
+    opacity: 1
+  }
+  to {
+    right: 100%;
+    opacity: 0
+  }
+}
+
+@-webkit-keyframes hide {
+  from {
+    right: 10px;
+    opacity: 1
+  }
+  to {
+    right: 100%;
+    opacity: 0
+  }
+}
+
+//zoom
+//ngHide
+.zoom.ng-hide-add {
+  -webkit-animation: zoomOut 0.4829s 1 ease;
+  -moz-animation: zoomOut 0.4829s 1 ease;
+  -o-animation: zoomOut 0.4829s 1 ease;
+}
+
+.zoom.ng-hide-remove {
+  -webkit-animation: zoomIn 0.4829s 1 ease;
+  -moz-animation: zoomIn 0.4829s 1 ease;
+  -o-animation: zoomIn 0.4829s 1 ease;
+}
+
+//ngIf
+.zoom.ng-leave {
+  -webkit-animation: zoomOut 0.4829s 1 ease;
+  -moz-animation: zoomOut 0.4829s 1 ease;
+  -o-animation: zoomOut 0.4829s 1 ease;
+}
+
+.zoom.ng-enter {
+  -webkit-animation: zoomIn 0.4829s 1 ease;
+  -moz-animation: zoomIn 0.4829s 1 ease;
+  -o-animation: zoomIn 0.4829s 1 ease;
+}
+
+@-webkit-keyframes zoomOut {
+  from {
+    -webkit-transform: rotate(0deg) scale(1) skew(-180deg) translate(0px);
+  }
+  to {
+    -webkit-transform: rotate(0deg) scale(0.1) skew(-180deg) translate(0px);
+  }
+}
+
+@-moz-keyframes zoomOut {
+  from {
+    -moz-transform: rotate(0deg) scale(1) skew(-180deg) translate(0px);
+  }
+  to {
+    -moz-transform: rotate(0deg) scale(0.1) skew(-180deg) translate(0px);
+  }
+}
+
+@-o-keyframes zoomOut {
+  from {
+    -o-transform: rotate(0deg) scale(1) skew(-180deg) translate(0px);
+  }
+  to {
+    -o-transform: rotate(0deg) scale(0.1) skew(-180deg) translate(0px);
+  }
+}
+
+@-webkit-keyframes zoomIn {
+  from {
+    -webkit-transform: rotate(0deg) scale(0.1) skew(-180deg) translate(0px);
+  }
+  to {
+    -webkit-transform: rotate(0deg) scale(1) skew(-180deg) translate(0px);
+  }
+}
+
+@-moz-keyframes zoomOut {
+  from {
+    -moz-transform: rotate(0deg) scale(0.1) skew(-180deg) translate(0px);
+  }
+  to {
+    -moz-transform: rotate(0deg) scale(1) skew(-180deg) translate(0px);
+  }
+}
+
+@-o-keyframes zoomOut {
+  from {
+    -o-transform: rotate(0deg) scale(0.1) skew(-180deg) translate(0px);
+  }
+  to {
+    -o-transform: rotate(0deg) scale(1) skew(-180deg) translate(0px);
+  }
 }
 
 @import "../category/styles/category.import.less";

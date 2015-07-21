@@ -153,7 +153,7 @@ app.controller('product_edit_adminCtrl', ['$scope', '$meteor', '$ionicPopup', '$
             }
         };
         $scope.removeTagChip = function (chip) {
-            $scope.newProduct.tags.splice($scope.newProduct.category.indexOf(chip._id), 1);
+            $scope.newProduct.tags.splice($scope.newProduct.tags.indexOf(chip._id), 1);
         };
 
 
@@ -203,16 +203,4 @@ app.controller('product_edit_adminCtrl', ['$scope', '$meteor', '$ionicPopup', '$
             console.log($scope.newProduct.childProducts);
         };
 
-
-        //Image operation
-        $meteor.subscribe('images');
-        $scope.images = $meteor.collectionFS(Images, false, Images);
-
-        //Create a modal to operate upload image, we can call as modalUploader
-        $ionicModal.fromTemplateUrl('imageUploader.ng.html', {
-            scope: $scope,
-            animation: 'slide-in-up'
-        }).then(function (modal) {
-            $scope.modal = modal;
-        });
     }]);

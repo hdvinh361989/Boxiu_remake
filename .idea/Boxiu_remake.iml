@@ -8,5 +8,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="angular_ionic_uiRouter_material" level="project" />
     <orderEntry type="library" name="alanning_roles" level="project" />
+    <orderEntry type="library" name="cfs group packages" level="project" />
+    <orderEntry type="library" name="danialfarid_ng-file-upload" level="project" />
   </component>
 </module>

@@ -1,0 +1,158 @@
+<ion-modal-view>
+
+    <ion-tabs class="tabs-striped pane tabs-color-assertive">
+        <!--View list of uploaded photo and select one-->
+        <ion-tab title="Photos"
+                 on-select="$imageUploaderCtrl.selectedIndex=-1">
+            <ion-header-bar class="bar-light item-input-inset">
+                <!--Controls: save, cancel-->
+                <label class="item-input-wrapper">
+                    <input type="text" ng-model="paginate.searchImgTxt" placeholder="Search">
+                </label>
+
+                <select ng-model="$imageUploaderCtrl.filter" class="md-margin">
+                    <option value="all">All</option>
+                    <option value="thisYear">This year</option>
+                    <option value="thisMonth">This month</option>
+                    <option value="thisDay">Today</option>
+                </select>
+
+                <div class="button-group">
+                    <button class="button button-icon icon ion-trash-b"
+                            ng-click="$imageUploaderCtrl.isDelete = !$imageUploaderCtrl.isDelete">
+                    </button>
+
+                    <button class="button button-icon icon ion-chevron-right"
+                            ng-click="$imageUploaderCtrl.modal.hide()">
+                    </button>
+                </div>
+
+            </ion-header-bar>
+            <ion-content has-bouncing="false">
+                <div layout="row" layout-fill layout-wrap layout-padding>
+                    <div flex-gt-md="25" flex-md="33" flex-sm="50"
+                         ng-repeat="image in images"
+                         on-tap="$imageUploaderCtrl.selectedIndex = $index"
+                         on-double-tap="selectImage(image.url(), image.isUploaded(), $event)"
+                         class="vt-card "
+                         ng-class="{'md-whiteframe-z1': $imageUploaderCtrl.selectedIndex == $index}"
+                            >
+                        <div class="item item-divider">
+                            {{image.name()}}
+                        </div>
+                        <!--Need to check for sure file is uploaded to server before get url-->
+                        <div class="item item-image">
+                            <img ng-src="{{image.isUploaded ? image.url() : undefined}}"/>
+                        </div>
+
+                        <button ng-if="$imageUploaderCtrl.isDelete"
+                                class="button button-icon icon ion-minus-circled assertive vt-button-delete zoom"
+                                ng-click="images.remove(image); $event.stopPropagation()">
+                        </button>
+                    </div>
+                </div>
+
+                <ion-infinite-scroll
+                        ng-if="moreDataCanBeLoaded()"
+                        on-infinite="loadMore()"
+                        distance="1%">
+                </ion-infinite-scroll>
+            </ion-content>
+
+        </ion-tab>
+
+        <!--Upload photos from local computer and select one-->
+        <ion-tab title="My Computer"
+                 on-select="$imageUploaderCtrl.selectedIndex=-1">
+            <ion-header-bar class="bar-light">
+                <!--Controls: save, cancel-->
+
+                <button class="button button-clear button-positive"
+                        ng-click="save()"
+                        ng-disabled="{{$imageUploaderCtrl.isSaving}}" >
+                    Save
+                </button>
+
+                <button class="button button-clear button-assertive"
+                        ngf-select
+                        ngf-change="addImages($files, $event, $rejectedFiles)"
+                        ngf-multiple="true" ngf-allow-dir="false" ngf-accept="'image/*'">
+                    Upload
+                </button>
+
+                <h1 class="title">Uploader</h1>
+
+                <button class="button button-clear button-positive"
+                        ng-click="$imageUploaderCtrl.modal.hide()">
+                    Cancel
+                </button>
+
+            </ion-header-bar>
+            <ion-content has-bouncing="false"
+                         ngf-drop
+                         ngf-change="addImages($files, $event, $rejectedFiles)"
+                         ngf-drag-over-class="{accept:'dragover', reject: 'dragover-err', delay: 100}"
+                         class="drop-box"
+                         ngf-multiple="true" ngf-allow-dir="false" ngf-accept="'image/*'"
+                         ngf-drop-available="dropAvailable">
+
+                <div class="vt-upload-placeHolder"
+                     ng-show="recentUploadedImages.length <= 0">
+                    <div>Click upload button above</div>
+                    <div ng-if="dropAvailable">
+                        <strong>OR</strong>
+                    </div>
+                    <div ng-if="dropAvailable">You can also drop image to here</div>
+                </div>
+
+                <ion-list ng-show="recentUploadedImages.length > 0"
+                          class="list">
+
+                    <ion-list-item ng-repeat="image in recentUploadedImages"
+                                   class="item item-thumbnail-left item-icon-right">
+
+                        <img ng-src="{{recentUploadedLocalURI[$index]}}"
+                             on-tap="selectImage(image.url(), image.isUploaded(), $event)"/>
+
+                        <div on-tap="selectImage(image.url(), image.isUploaded(), $event)">
+                            <h2 class="padding-bottom">{{image.name()}}</h2>
+                            <md-progress-linear md-mode="determinate"
+                                                value="{{image.uploadProgress()}}"
+                                                class="positive"></md-progress-linear>
+                        </div>
+
+                        <button class="button button-icon icon ion-minus-circled assertive"
+                                ng-click="$event.stopPropagation(); deleteRecentUploaded($index, image);">
+                        </button>
+                    </ion-list-item>
+
+                </ion-list>
+            </ion-content>
+
+        </ion-tab>
+
+        <!--Crop image-->
+        <ion-tab title="Crop">
+            <ion-header-bar class="bar-light">
+                <!--Controls: save, cancel-->
+
+                <button class="button button-clear button-positive"
+                        ng-click=""
+                        ng-disabled="{{$imageUploaderCtrl.isSaving}}" >
+                    Save
+                </button>
+
+                <h1 class="title">Crop Image</h1>
+
+                <button class="button button-clear button-positive"
+                        ng-click="$imageUploaderCtrl.modal.hide()">
+                    Cancel
+                </button>
+
+            </ion-header-bar>
+            <ion-content>
+
+            </ion-content>
+        </ion-tab>
+    </ion-tabs>
+</ion-modal-view>

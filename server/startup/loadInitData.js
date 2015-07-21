@@ -144,4 +144,5 @@ Meteor.startup(function () {
             Roles.addUsersToRoles(id, ['admin'])
         }
     }
+    Images.remove();
 });
