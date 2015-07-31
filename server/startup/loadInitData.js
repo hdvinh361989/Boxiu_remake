@@ -39,7 +39,7 @@ Meteor.startup(function () {
     if (Product.find().count() === 0) {
         var product = [
             {
-                profile:{
+                profile: {
                     'brand': 'memebox',
                     'name': 'Chocolate & Wine Box 1',
                     'introduction': 'Chocolate and wine for every occasion! Whether you’re getting ready to go out, or set on being cozy by the fireplace, we can’t think of a better combination. Especially after a long week when all you want to do is wind down, relax and remember #ohwefancy.',
@@ -52,7 +52,7 @@ Meteor.startup(function () {
                 'tags': ['#ohwefancy']
             },
             {
-                profile:{
+                profile: {
                     'brand': 'memebox',
                     'name': 'Chocolate & Wine Box 2',
                     'introduction': 'Chocolate and wine for every occasion! Whether you’re getting ready to go out, or set on being cozy by the fireplace, we can’t think of a better combination. Especially after a long week when all you want to do is wind down, relax and remember #ohwefancy.',
@@ -65,7 +65,7 @@ Meteor.startup(function () {
                 'tags': ['#ohwefancy']
             },
             {
-                profile:{
+                profile: {
                     'brand': 'memebox',
                     'name': 'Chocolate & Wine Box 3',
                     'introduction': 'Chocolate and wine for every occasion! Whether you’re getting ready to go out, or set on being cozy by the fireplace, we can’t think of a better combination. Especially after a long week when all you want to do is wind down, relax and remember #ohwefancy.',
@@ -78,7 +78,7 @@ Meteor.startup(function () {
                 'tags': ['#ohwefancy']
             },
             {
-                profile:{
+                profile: {
                     'brand': 'memebox',
                     'name': 'Chocolate & Wine Box 4',
                     'introduction': 'Chocolate and wine for every occasion! Whether you’re getting ready to go out, or set on being cozy by the fireplace, we can’t think of a better combination. Especially after a long week when all you want to do is wind down, relax and remember #ohwefancy.',
@@ -91,7 +91,7 @@ Meteor.startup(function () {
                 'tags': ['#ohwefancy']
             },
             {
-                profile:{
+                profile: {
                     'brand': 'memebox',
                     'name': 'Chocolate & Wine Box 5',
                     'introduction': 'Chocolate and wine for every occasion! Whether you’re getting ready to go out, or set on being cozy by the fireplace, we can’t think of a better combination. Especially after a long week when all you want to do is wind down, relax and remember #ohwefancy.',
@@ -125,24 +125,22 @@ Meteor.startup(function () {
             }
         ];
 
-        for(var k=0; k< category.length; k++){
+        for (var k = 0; k < category.length; k++) {
             Category.insert(category[k]);
         }
     }
 
 
-    if(Meteor.users.find().count() === 1){
+/*    if (Meteor.users.find().count() === 2) {
         var option = {
-            username: 'admin2',
-            emails:'hdvinh361989@gmail.com',
-            password:'123'
+            username: 'admin3',
+            emails: 'hdvinh361989@gmail.com',
+            password: '123'
         };
 
         var id = Accounts.createUser(option);
+        Roles.addUsersToRoles(id, ['admin'])
 
-        if (Meteor.roles.find().count() === 0) {
-            Roles.addUsersToRoles(id, ['admin'])
-        }
     }
-    Images.remove();
+    Images.remove();*/
 });

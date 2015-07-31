@@ -66,6 +66,7 @@ angular.module("boxiu").config(['$urlRouterProvider', '$stateProvider', '$locati
                         return $meteor.requireValidUser(function (user) {
                             if (!Roles.userIsInRole(user._id, ['admin'])) {
                                 console.log('UNAUTHORIZED');
+                                $meteor.logout();
                                 return "UNAUTHORIZED";
                             }
                             return true;
